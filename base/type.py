@@ -72,3 +72,13 @@ par(l1,2)
 print(l1)
 
 #可以看到python在函数内部对元素修改会改变他的原值，因此不是值copy
+
+
+
+
+
+#{}的每个item可以通过item[0],item[2]得到value
+m1={'a':1,'b':2}
+for i in m1.items():
+    print(i,type(i))
+    print(i[0],i[1])
