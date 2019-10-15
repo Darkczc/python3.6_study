@@ -82,21 +82,38 @@ def f1(x):
 
 
 #计数器和内存释放
+#这个内容涉及到变量的作用范围，py有LEGB的规则，local-enclosing(闭包)-global-built-in，如果内部函数的变量还没有被声明就做了运算，是违法的，如果外部函数有这个变量,也就是闭包内有定义这个变量，那么可以通过使用nonlocal在内部声明一下，如果想使它成为全局变量，可以使用global来申明，那么他就可以使用全局变量的初始值来进行计算,LEGB的优先级L>E>G>B
+
+#全局有效的作用域的变量类型[],{},(),其他都被对应的作用域取代，
 def counter():
+    # cnt=0
     cnt=[0]
     def f1():
+        # nonlocal  cnt
+        # cnt+=1
         cnt[0]+=1
         return cnt
     return f1
 
 
+#闭包可以用来制造工厂函数，宽泛的来表示一种线性关系可以用闭包,使用line1=line(3,4)来得到3x+4和line2=line(-1,1)得到-x+1这两条直线函数
+def line(a,b):
+    def ll(x):
+        return a*x+b
+    return ll
+
+
+
+
+
 if __name__=='__main__':
     # test_filter()
     # test_reduce()
-    # test_zip()
+    # test_zip()*
     # test_sort()
     # test_map()
     # print(f1(1)(10))
     num1=counter()
     print(num1())
     print(num1())
+    # print(cnt[0])
